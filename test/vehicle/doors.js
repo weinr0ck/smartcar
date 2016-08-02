@@ -1,8 +1,10 @@
 var expect  = require("chai").expect;
 var doors = require("../../app/vehicle/doors");
 
+//Doors Logic tests
 describe("Doors Vehicle App", function() {
 	describe("filterJsonData", function() {
+		//Test exceptions
 		it("exceptions", function() {
 			var App = new doors();
 
@@ -28,6 +30,7 @@ describe("Doors Vehicle App", function() {
 			expect(() => App.filterJsonData(req)).to.throw(Error, /doors locked data not found/);
 		});
 
+		//First test legit data
 		it("legit data 1", function() {
 			var App = new doors();
 
@@ -65,6 +68,7 @@ describe("Doors Vehicle App", function() {
 			expect(result[1].locked).to.equal("True");
 		});
 
+		//Second test legit data
 		it("legit data 2", function() {
 			var App = new doors();
 

@@ -1,8 +1,15 @@
 var Base = require('../../app/vehicle/base.js');
 var request = require('request');
 
+//Doors class to handle /getSecurityStatusService
 class Doors extends Base {
 
+	/**
+	 * Get the json data from the 3rd party Api
+	 *
+	 * @param {object} req
+	 * @param {function} next
+	 */
 	getJsonData(req, next) {
 		request.post(this.url + "/getSecurityStatusService", {
 			method: "POST",
@@ -11,11 +18,18 @@ class Doors extends Base {
 				responseType: "JSON"
 			}
 		}, function (err, res, body) {
-			req.doors = body.data.doors.values;
+			if (body.data.doors.values !== undefined) {
+				req.doors = body.data.doors.values;
+			}
 			next();
 		});
 	}
 
+	/**
+	 * Filter the json to a smartcar standard
+	 *
+	 * @param {object} req
+	 */
 	filterJsonData(req) {
 		//check if we have the req object and its data
 		if (req === undefined || req.doors === undefined) {

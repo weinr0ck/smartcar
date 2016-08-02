@@ -1,8 +1,10 @@
 var expect  = require("chai").expect;
 var battery = require("../../app/vehicle/battery");
 
+//Battery Logic tests
 describe("Battrey Vehicle App", function() {
 	describe("filterJsonData", function() {
+		//Test exceptions
 		it("exceptions", function() {
 			var App = new battery();
 
@@ -20,6 +22,7 @@ describe("Battrey Vehicle App", function() {
 			expect(() => App.filterJsonData(req)).to.throw(Error, /batteryLevel data not found/);
 		});
 
+		//First test legit data
 		it("legit data 1", function() {
 			var App = new battery();
 
@@ -41,6 +44,7 @@ describe("Battrey Vehicle App", function() {
 			expect(result.percent).to.equal("20");
 		});
 
+		//Second test legit data
 		it("legit data 2", function() {
 			var App = new battery();
 

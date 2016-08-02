@@ -1,8 +1,15 @@
 var Base = require('../../app/vehicle/base.js');
 var request = require('request');
 
+//General class to handle /getVehicleInfoService
 class General extends Base {
 
+	/**
+	 * Get the json data from the 3rd party Api
+	 *
+	 * @param {object} req
+	 * @param {function} next
+	 */
 	getJsonData(req, next) {
 		request.post(this.url + "/getVehicleInfoService", {
 			method: "POST",
@@ -11,11 +18,18 @@ class General extends Base {
 				responseType: "JSON"
 			}
 		}, function (err, res, body) {
-			req.general = body.data;
+			if (body.data !== undefined) {
+				req.general = body.data;
+			}
 			next();
 		});
 	}
 
+	/**
+	 * Filter the json to a smartcar standard
+	 *
+	 * @param {object} req
+	 */
 	filterJsonData(req) {
 
 		//check if we have the req object and its data

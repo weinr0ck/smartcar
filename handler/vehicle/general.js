@@ -8,7 +8,7 @@ class General extends Base {
      * Call application to get json data.
      * @param {object} req - The request
      * @param {object} res - The response
-	 * @param {functio} next - Continue from this middleware
+	 * @param {function} next - Continue from this middleware
      */
 	gmGet (req, res, next) {
 		App.getJsonData(req, next);
@@ -18,7 +18,7 @@ class General extends Base {
      * Call application to filter json data.
      * @param {object} req - The request
      * @param {object} res - The response
-	 * @param {functio} next - Continue from this middleware
+	 * @param {function} next - Continue from this middleware
      */
 	filterGet (req, res, next) {
 		res.send(App.filterJsonData(req));

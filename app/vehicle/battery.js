@@ -1,8 +1,15 @@
 var Base = require('../../app/vehicle/base.js');
 var request = require('request');
 
+//Battery class to handle /getEnergyService
 class Battery extends Base {
 
+	/**
+	 * Get the json data from the 3rd party Api
+	 *
+	 * @param {object} req
+	 * @param {function} next
+	 */
 	getJsonData(req, next) {
 		request.post(this.url + "/getEnergyService", {
 			method: "POST",
@@ -11,11 +18,18 @@ class Battery extends Base {
 				responseType: "JSON"
 			}
 		}, function (err, res, body) {
-			req.battery = body.data;
+			if (body.data !== undefined) {
+				req.battery = body.data;
+			}
 			next();
 		});
 	}
 
+	/**
+	 * Filter the json to a smartcar standard
+	 *
+	 * @param {object} req
+	 */
 	filterJsonData(req) {
 		//check if we have the req object and its data
 		if (req === undefined || req.battery === undefined) {

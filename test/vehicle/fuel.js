@@ -1,8 +1,10 @@
 var expect  = require("chai").expect;
 var fuel = require("../../app/vehicle/fuel");
 
+//Fuel Logic tests
 describe("Fuel Vehicle App", function() {
 	describe("filterJsonData", function() {
+		//Test exceptions
 		it("exceptions", function() {
 			var App = new fuel();
 
@@ -20,6 +22,7 @@ describe("Fuel Vehicle App", function() {
 			expect(() => App.filterJsonData(req)).to.throw(Error, /tankLevel data not found/);
 		});
 
+		//First test legit data
 		it("legit data 1", function() {
 			var App = new fuel();
 
@@ -41,6 +44,7 @@ describe("Fuel Vehicle App", function() {
 			expect(result.percent).to.equal("30");
 		});
 
+		//Second test legit data
 		it("legit data 2", function() {
 			var App = new fuel();
 

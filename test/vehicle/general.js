@@ -1,8 +1,10 @@
 var expect  = require("chai").expect;
 var general = require("../../app/vehicle/general");
 
+//General Logic tests
 describe("General Vehicle App", function() {
 	describe("filterJsonData", function() {
+		//Test exceptions
 		it("exceptions", function() {
 			var App = new general();
 
@@ -38,6 +40,7 @@ describe("General Vehicle App", function() {
 			expect(() => App.filterJsonData(req)).to.throw(Error, /driveTrain data not found/);
 		});
 
+		//First test legit data
 		it("legit data 1", function() {
 			var App = new general();
 
@@ -74,6 +77,7 @@ describe("General Vehicle App", function() {
 			expect(result.driveTrain).to.equal("v8");
 		});
 
+		//Second test legit data
 		it("legit data 2", function() {
 			var App = new general();
 
