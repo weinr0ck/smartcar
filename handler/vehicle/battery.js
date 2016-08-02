@@ -2,6 +2,7 @@ var AppBattery = require('../../app/vehicle/battery.js');
 var Base = require('../../handler/vehicle/base.js');
 var App = new AppBattery();
 
+//Batter class is used to handle the battery endpoint
 class Battery extends Base {
     /**
      * Call application to get json data.

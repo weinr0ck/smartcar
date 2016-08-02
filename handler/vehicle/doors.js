@@ -2,6 +2,7 @@ var AppDoors = require('../../app/vehicle/doors.js');
 var Base = require('../../handler/vehicle/base.js');
 var App = new AppDoors();
 
+//Doors class is used to handle the doors endpoint
 class Doors extends Base {
     /**
      * Call application to get json data.
