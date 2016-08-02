@@ -17,8 +17,28 @@ class General extends Base {
 	}
 
 	filterJsonData(req) {
+
+		//check if we have the req object and its data
+		if (req === undefined || req.general === undefined) {
+			throw new Error("Request object does not contain usable info");
+		}
+
 		//get the data from the request
 		var data = req.general;
+
+		//check that our data to filter on has come through
+		if (data.vin === undefined || data.vin.value === undefined) {
+			throw new Error("Vin data not found");
+		}
+		if (data.color === undefined || data.color.value === undefined) {
+			throw new Error("Color data not found");
+		}
+		if (data.fourDoorSedan === undefined || data.fourDoorSedan.value === undefined) {
+			throw new Error("doorCount data not found");
+		}
+		if (data.driveTrain === undefined || data.driveTrain.value === undefined) {
+			throw new Error("driveTrain data not found");
+		}
 
 		//return the object of filtered data
 		return {

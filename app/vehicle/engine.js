@@ -18,6 +18,11 @@ class Engine extends Base {
 	}
 
 	filterJsonData(req) {
+		//check if we have the req object and its data
+		if (req === undefined || req.engine === undefined) {
+			throw new Error("Request object does not contain usable info");
+		}
+
 		//return the result of the engine service
 		return {
 			status: req.engine.toUpperCase() === 'EXECUTED' ? 'success' : 'error'

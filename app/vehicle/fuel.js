@@ -17,8 +17,18 @@ class Fuel extends Base {
 	}
 
 	filterJsonData(req) {
+		//check if we have the req object and its data
+		if (req === undefined || req.fuel === undefined) {
+			throw new Error("Request object does not contain usable info");
+		}
+
 		//get the data from the request
 		var data = req.fuel;
+
+		//check that our data to filter on has come through
+		if (data.tankLevel === undefined || data.tankLevel.value === undefined) {
+			throw new Error("tankLevel data not found");
+		}
 
 		//return the object of filtered data
 		return {
